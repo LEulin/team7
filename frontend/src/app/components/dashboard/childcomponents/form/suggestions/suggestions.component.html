@@ -1,0 +1,17 @@
+<table>
+        <tr class="thead" >
+            <th colspan="9" class="noborder">
+            Suggestions
+        </th>
+    </tr>
+      <tr class="thead">
+        <th>Name</th>
+        <th>Batch</th>
+        <th>Email</th>    
+      </tr>
+      <tr [class.selected]="student.studentId != sugg._id" (click)="clicked(sugg)" *ngFor="let sugg of suggestions; let i = index">
+        <td>{{ sugg.name }}</td>
+        <td>{{ sugg.batch }}</td>
+        <td>{{ sugg.email }}</td>
+      </tr>
+    </table>

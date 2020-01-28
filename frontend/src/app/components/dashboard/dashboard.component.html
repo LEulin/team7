@@ -1,10 +1,16 @@
 <div class="outercont">
 <div class="sideboard" [ngClass]="{ resp: min }">
+  <img src="C:\Users\2ndyrgroupb\Downloads\LogoSample_ByTailorBrands.jpg">
   <ul>
     <li>
       <span (click)="min = !min" *ngIf="!min" class="fas fa-chevron-left"></span>
       <span (click)="min = !min" *ngIf="min" class="fas fa-chevron-right"></span>
     </li>
+    <!-- This is for the searchbar -->
+    <div>
+        <input  name="searchbar" (keypress)="searchfunc($event)" [(ngModel)]="search" class="form-control" placeholder="Search...">
+      </div>
+      <br>
     <li
       [class.active]="path == '/dashboard/student-list' || path.split('/')[2] =='payCounterpart'"
       (click)="goto('/dashboard/student-list')"
@@ -25,7 +31,7 @@
       (click)="goto('/dashboard/monthly-analytics')"
     >
       <span class="fas fa-chart-bar"></span>
-      <span class="navtext">monthly statistics</span>
+      <span class="navtext">Monthly statistics</span>
     </li>
     <li
       [class.active]="path == '/dashboard/anual-analytics'"
@@ -37,6 +43,6 @@
   </ul>
 </div>
 <div class="content" [class.hidden]="min">
-  <router-outlet ></router-outlet>
+  <router-outlet></router-outlet>
 </div>
 </div>

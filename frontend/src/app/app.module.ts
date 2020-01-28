@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule }    from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { FormComponent } from './components/dashboard/childcomponents/form/form.
 import { AnualAnalyticsComponent } from './components/dashboard/childcomponents/anual-analytics/anual-analytics.component';
 import { MonthlyAnalyticsComponent } from './components/dashboard/childcomponents/monthly-analytics/monthly-analytics.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { SuggestionsComponent } from './components/dashboard/childcomponents/form/suggestions/suggestions.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     AnualAnalyticsComponent,
     MonthlyAnalyticsComponent,
     NotfoundComponent,
+    SuggestionsComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
     ,FormsModule,
     ReactiveFormsModule

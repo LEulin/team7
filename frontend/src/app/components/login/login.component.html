@@ -1,2 +1,47 @@
-<p>login works!</p>
-<button routerLink="/dashboard">login</button>
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="https://pngimage.net/wp-content/uploads/2018/06/logo-admin-png-4.png" class="brand_logo"
+                        alt="Logo">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center form_container">
+                <form (ngSubmit)="login()" #formni="ngForm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user fa-lg"></i></span>
+                        </div>
+                        <input type="text" name="user" class="form-control input_user" placeholder="Username..."
+                            [(ngModel)]="username" #user="ngModel" required>
+                    </div>
+                    <div class="alert" *ngIf="user.invalid && (user.dirty || user.touched)">
+                        <div class="alert alert-danger" role="alert" *ngIf="user.errors.required">Username is
+                            required!!</div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key fa-lg"></i></span>
+                        </div>
+                        <input type="password" name="pass" class="form-control input_pass" placeholder="Password..."
+                            [(ngModel)]="password" #pass="ngModel" required>
+                    </div>
+                    <div class="alert" *ngIf="pass.invalid && (pass.dirty || pass.touched)">
+                        <div class="alert alert-danger" role="alert" *ngIf="pass.errors.required">Password is
+                            required!!</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline">
+                            <label class="custom-control-label" for="customControlInline">Remember me</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <button class="btn login_btn" [disabled]="!formni.form.valid">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,135 +1,137 @@
 <div class="container">
-  <div class="outercont">
-    <div class="divhead">
-      Add new record
-    </div>
-    <div class="innercont">
-      <form [formGroup]="myForm" (submit)="onSubmit(myForm)">
-        <div class="innerform">
-          <div class="paircont">
-            <div
-              class="holder"
-              [ngClass]="{
-                active: focus === 1,
-                error: validate('name', ['required'])
-              }"
-            >
-              <label [class.filled]="myForm.controls.name.value" class="label"
-                >Student name</label
+    <div class="outercont">
+      <div class="divhead">
+        Add new record
+      </div>
+      <div class="innercont">
+        <form [formGroup]="myForm" (submit)="onSubmit(myForm)">
+          <div class="innerform">
+            <div class="paircont">
+              <div
+                class="holder"
+                [ngClass]="{
+                  active: focus === 1,
+                  error: validate('studentName', ['required'])
+                }"
               >
-              <label
-                class="placeholder"
-                (click)="focus = 1"
-                [class.filled2]="myForm.controls.name.value"
-                >Student name</label
-              >
-              <div class="border">
-                <input
-                  type="text"
-                  autocomplete="off"
-                  formControlName="name"
-                  [(ngModel)]="record.name"
-                  (focus)="focus = 1"
-                  (focusout)="focus = 0"
-                />
+                <label [class.filled]="myForm.controls.studentName.value" class="label"
+                  >Student name</label
+                >
+                <label
+                  class="placeholder"
+                  (click)="focus = 1"
+                  [class.filled2]="myForm.controls.studentName.value"
+                  >Student name</label
+                >
+                <div class="border">
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="studentName"
+                    [(ngModel)]="record.studentName"
+                    (keyup)="getSuggestions(record.studentName)"
+                    (focus)="focus = 1"
+                    (focusout)="focus = 0"
+                  />
+                </div>
+                <span class="errorMessage">This field is required! </span>
               </div>
-              <span class="errorMessage">This field is required! </span>
+              <div
+                class="holder"
+                [ngClass]="{
+                  active: focus === 2,
+                  error: validate('month', ['required'])
+                }"
+              >
+                <label [class.filled]="myForm.controls.month.value" class="label"
+                  >Month</label
+                >
+                <label
+                  class="placeholder"
+                  (click)="focus = 2"
+                  [class.filled2]="myForm.controls.month.value"
+                  >Month</label
+                >
+                <div class="border">
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="month"
+                    [(ngModel)]="record.month"
+                    (focus)="focus = 2"
+                    (focusout)="focus = 0"
+                  />
+                </div>
+                <span class="errorMessage">This field is required! </span>
+              </div>
             </div>
-            <div
-              class="holder"
-              [ngClass]="{
-                active: focus === 2,
-                error: validate('month', ['required'])
-              }"
-            >
-              <label [class.filled]="myForm.controls.month.value" class="label"
-                >Month</label
+            <div class="paircont">
+              <div
+                class="holder"
+                [ngClass]="{
+                  active: focus === 3,
+                  error: validate('amount', ['required'])
+                }"
               >
-              <label
-                class="placeholder"
-                (click)="focus = 2"
-                [class.filled2]="myForm.controls.month.value"
-                >Month</label
-              >
-              <div class="border">
-                <input
-                  type="text"
-                  autocomplete="off"
-                  formControlName="month"
-                  [(ngModel)]="record.month"
-                  (focus)="focus = 2"
-                  (focusout)="focus = 0"
-                />
+                <label [class.filled]="myForm.controls.amount.value" class="label"
+                  >Amount</label
+                >
+                <label
+                  class="placeholder"
+                  (click)="focus = 3"
+                  [class.filled2]="myForm.controls.amount.value"
+                  >Amount</label
+                >
+                <div class="border">
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="amount"
+                    [(ngModel)]="record.amount"
+                    (focus)="focus = 3"
+                    (focusout)="focus = 0"
+                  />
+                </div>
+                <span class="errorMessage">This field is required! </span>
               </div>
-              <span class="errorMessage">This field is required! </span>
+              <div
+                class="holder"
+                [ngClass]="{
+                  active: focus === 4,
+                  error: validate('receivedBy', ['required'])
+                }"
+              >
+                <label
+                  [class.filled]="myForm.controls.receivedBy.value"
+                  class="label"
+                  >Received By</label
+                >
+                <label
+                  class="placeholder"
+                  (click)="focus = 4"
+                  [class.filled2]="myForm.controls.receivedBy.value"
+                  >Received By</label
+                >
+                <div class="border">
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="receivedBy"
+                    [(ngModel)]="record.receivedBy"
+                    (focus)="focus = 4"
+                    (focusout)="focus = 0"
+                  />
+                </div>
+                <span class="errorMessage">This field is required! </span>
+              </div>
             </div>
           </div>
-          <div class="paircont">
-            <div
-              class="holder"
-              [ngClass]="{
-                active: focus === 3,
-                error: validate('amount', ['required'])
-              }"
-            >
-              <label [class.filled]="myForm.controls.amount.value" class="label"
-                >Amount</label
-              >
-              <label
-                class="placeholder"
-                (click)="focus = 3"
-                [class.filled2]="myForm.controls.amount.value"
-                >Amount</label
-              >
-              <div class="border">
-                <input
-                  type="text"
-                  autocomplete="off"
-                  formControlName="amount"
-                  [(ngModel)]="record.amount"
-                  (focus)="focus = 3"
-                  (focusout)="focus = 0"
-                />
-              </div>
-              <span class="errorMessage">This field is required! </span>
-            </div>
-            <div
-              class="holder"
-              [ngClass]="{
-                active: focus === 4,
-                error: validate('receivedBy', ['required'])
-              }"
-            >
-              <label
-                [class.filled]="myForm.controls.receivedBy.value"
-                class="label"
-                >Received By</label
-              >
-              <label
-                class="placeholder"
-                (click)="focus = 4"
-                [class.filled2]="myForm.controls.receivedBy.value"
-                >Received By</label
-              >
-              <div class="border">
-                <input
-                  type="text"
-                  autocomplete="off"
-                  formControlName="receivedBy"
-                  [(ngModel)]="record.receivedBy"
-                  (focus)="focus = 4"
-                  (focusout)="focus = 0"
-                />
-              </div>
-              <span class="errorMessage">This field is required! </span>
-            </div>
+          <div class="buttons">
+            <button type="submit" [disabled]="myForm.invalid" [class.nohover]="myForm.invalid" class="primary">Submit</button>
+            <button class="danger" routerLink="/dashboard/student-list">Cancel</button>
           </div>
-        </div>
-        <div class="buttons">
-          <button type="submit" class="primary">Submit</button>
-          <button class="danger" routerLink="/dashboard/student-list">Cancel</button>
-        </div>
-      </form>
+        </form><br><br>
+        <app-suggestions (select)="getSelected($event)" [student]="record" [suggestions]="suggestions"></app-suggestions>
+      </div>
     </div>
   </div>
-</div>

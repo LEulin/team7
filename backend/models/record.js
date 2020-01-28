@@ -1,22 +1,35 @@
 const mongoose = require("mongoose");
 
 var Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
+  ObjectId = Schema.ObjectId;
 
-var record = new mongoose.Schema({
-    // studentId: { type: ObjectId, required: true },
-    // name: { type: String, required: true },
-    // email: { type: String, required: true },
-    // monthsPaid: { type: Number, required: false },
-    // amountPaid: { type: Boolean, default: false },
-    // inProgress: { type: Boolean, default: false },
-    // location: {
-    //     city: { type: String, required: true },
-    //     municipality: { type: String, required: true },
-    //     barangay: { type: String, required: false }
-    // },
-    // category: { type: String, required: true },
-    // photos: { type: String, required: false },
-    // isDeleted: { type: Boolean, default: false },
-    // isViewed: { type: Boolean, default: false }
+var Record = new mongoose.Schema({
+  studentId: { type: ObjectId, required: true },
+  studentName: { type: String, required: true },
+  month: { type: String, required: true },
+  amount: { type: Number, required: true },
+  receivedBy: { type: String, required: true },
+  dateReceived: { type: Date, default: Date.now(), required: false },
+  batch: { type: String, required: true }
 });
+
+
+Record.statics.retrieveAll = async function () {
+    return await this.aggregate([
+        {
+           $group: {
+               _id: "$_id", monthsPaid: { $sum: 1 }, amountPaid: { $sum: "$amount"}
+           }
+        }
+    ])
+}
+
+Record.statics.createRecord = async function(record) {
+    var Record = new this(record);
+     var result= await Record.save();
+     console.log(result);
+     return Record;
+}
+
+
+module.exports = mongoose.model('Record', Record);

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
+import { ServiceService } from '../../services/service.service';
+import { Student } from '../../services/student';
 
 
 @Component({
@@ -9,9 +11,14 @@ import { Location } from '@angular/common';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  // This is for the search
+  searchsuggest : string
+  student: Array<Student>
+
+
   path:string = "/dashboard/student-list";
   min: boolean = false;
-  constructor(private location: Location, private route: Router) {
+  constructor(private location: Location, private route: Router, private service: ServiceService) {
     this.path = this.location.path();
     this.route.events.subscribe((val) => {
      if (val instanceof NavigationEnd) {
@@ -31,5 +38,11 @@ export class DashboardComponent implements OnInit {
     this.route.navigate([path]);
     this.path = path;
   }
+
+  searchfunc(){
+    this.service.getSearch()
+    console.log(this.searchsuggest)
+  }
+  
   
 }
