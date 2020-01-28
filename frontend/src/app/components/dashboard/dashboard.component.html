@@ -1,48 +1,36 @@
 <div class="outercont">
-<div class="sideboard" [ngClass]="{ resp: min }">
-  <img src="https://raw.githubusercontent.com/LEulin/team7/master/frontend/src/assets/logo.jpg">
-  <ul>
-    <li>
-      <span (click)="min = !min" *ngIf="!min" class="fas fa-chevron-left"></span>
-      <span (click)="min = !min" *ngIf="min" class="fas fa-chevron-right"></span>
-    </li>
-    <!-- This is for the searchbar -->
-    <div>
-        <input  name="searchbar" (keypress)="searchfunc($event)" [(ngModel)]="search" class="form-control" placeholder="Search...">
+  <div class="sideboard" [ngClass]="{ resp: min }">
+    <ul>
+      <li>
+        <span (click)="min = !min" *ngIf="!min" class="fas fa-chevron-left"></span>
+        <span (click)="min = !min" *ngIf="min" class="fas fa-chevron-right"></span>
+        <img src="https://raw.githubusercontent.com/LEulin/team7/master/frontend/src/assets/Capture.PNG">
+      </li>
+      <!-- This is for the searchbar -->
+      <div>
+        <input name="searchbar" (keypress)="searchfunc($event)" [(ngModel)]="search" class="form-control" placeholder="Search...">
       </div>
       <br>
-    <li
-      [class.active]="path == '/dashboard/student-list' || path.split('/')[2] =='payCounterpart'"
-      (click)="goto('/dashboard/student-list')"
-    >
-      <span class="fas fa-list"></span>
-      <span class="navtext">students list</span>
-    </li>
-    <li
-      [class.active]="path == '/dashboard/form'"
-      (click)="goto('/dashboard/form')"
-    >
-      <span class="fas fa-money-check"></span>
-      <span class="navtext">Add new record</span>
-    </li>
-    <!-- <li (click)="/dashboard/record">student record</li> -->
-    <li
-      [class.active]="path == '/dashboard/monthly-analytics'"
-      (click)="goto('/dashboard/monthly-analytics')"
-    >
-      <span class="fas fa-chart-bar"></span>
-      <span class="navtext">Monthly statistics</span>
-    </li>
-    <li
-      [class.active]="path == '/dashboard/anual-analytics'"
-      (click)="goto('/dashboard/anual-analytics')"
-    >
-      <span class="fas fa-chart-area"></span>
-      <span class="navtext">Anual statistics</span>
-    </li>
-  </ul>
-</div>
-<div class="content" [class.hidden]="min">
-  <router-outlet></router-outlet>
-</div>
+      <li [class.active]="path == '/dashboard/student-list' || path.split('/')[2] =='payCounterpart'" (click)="goto('/dashboard/student-list')">
+        <span class="fas fa-list"></span>
+        <span class="navtext">students list</span>
+      </li>
+      <li [class.active]="path == '/dashboard/form'" (click)="goto('/dashboard/form')">
+        <span class="fas fa-money-check"></span>
+        <span class="navtext">Add new record</span>
+      </li>
+      <!-- <li (click)="/dashboard/record">student record</li> -->
+      <li [class.active]="path == '/dashboard/monthly-analytics'" (click)="goto('/dashboard/monthly-analytics')">
+        <span class="fas fa-chart-bar"></span>
+        <span class="navtext">Monthly statistics</span>
+      </li>
+      <li [class.active]="path == '/dashboard/anual-analytics'" (click)="goto('/dashboard/anual-analytics')">
+        <span class="fas fa-chart-area"></span>
+        <span class="navtext">Anual statistics</span>
+      </li>
+    </ul>
+  </div>
+  <div class="content" [class.hidden]="min">
+    <router-outlet></router-outlet>
+  </div>
 </div>

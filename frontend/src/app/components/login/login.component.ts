@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2'
 import { Admin } from './admin';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder,  Validators } from '@angular/forms';
 
 
 
@@ -11,14 +12,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  myForm: FormGroup;
   admininfo: Admin
   username: string
   password: string
 
-  constructor(private router : Router) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
+    this.admininfo = new Admin();
+    this.new(new Admin())
+  }
+
+  new(val) {
+    this.myForm = this.fb.group({
+      username: [val.studentName, Validators.required],
+      password: [val.studentName, Validators.required]
+    })
+  }
+
+
+  validate(value, validation) {
+    var valid: number = 0;
+    if (this.myForm.get(value).touched) {
+      validation.forEach(error => {
+        if (this.myForm.get(value).hasError(error)) {
+          valid++;
+        }
+      });
+    }
+    return valid > 0;
   }
 
   login() {

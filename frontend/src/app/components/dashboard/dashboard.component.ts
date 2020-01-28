@@ -39,10 +39,10 @@ export class DashboardComponent implements OnInit {
     this.path = path;
   }
 
-  searchfunc(){
-    this.service.getSearch()
-    console.log(this.searchsuggest)
-  }
+  // searchfunc(){
+  //   this.service.getSearch()
+  //   console.log(this.searchsuggest)
+  // }
   
   
 }
